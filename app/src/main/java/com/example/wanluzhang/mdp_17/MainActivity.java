@@ -544,6 +544,9 @@ public class MainActivity extends AppCompatActivity implements SensorEventListen
 //        sendMessage("pastart," + sendPos + "\n");
     }
 
+    /*
+        parse a string into int array
+     */
     public int[] toIntArray(String s){
         Log.d("toIntArray()", s);
         String[] stringArray = s.split(" ");
@@ -566,7 +569,9 @@ public class MainActivity extends AppCompatActivity implements SensorEventListen
         actionBar.setSubtitle(subTitle);
     }
 
-    // the handler that gets info back from the Bluethooth Chat Service
+    /*
+        create handler to get info back from the Bluethooth Chat Service
+     */
     private final Handler mHandler = new Handler(){
         @Override
         public void handleMessage(Message msg){
@@ -659,6 +664,9 @@ public class MainActivity extends AppCompatActivity implements SensorEventListen
         }
     };
 
+    /*
+        decode each step received and update the map to show robot movement
+     */
     public void stepMovement(String msg) throws JSONException{
         String step = msg.replace("#", "");
         move(step);
@@ -699,6 +707,9 @@ public class MainActivity extends AppCompatActivity implements SensorEventListen
         }
     }
 
+    /*
+        for each step, check its direction. if it's forward command, calculate the number followed by "F"
+     */
     public void move(String s){
         String numMove = s;
         Log.d("numMove: ",numMove);
@@ -717,7 +728,7 @@ public class MainActivity extends AppCompatActivity implements SensorEventListen
     }
 
     /*
-     draw out the shortest path
+        draw out the shortest path
     */
     public void drawSp(String[] steps){
         int d = 180;
@@ -783,7 +794,7 @@ public class MainActivity extends AppCompatActivity implements SensorEventListen
         }
     }
 
-
+    // not necessary for now
     public void runSp() throws JSONException{
         Log.d(TAG, "runSp()");
         for(String step: spSteps){
@@ -811,6 +822,9 @@ public class MainActivity extends AppCompatActivity implements SensorEventListen
         }
     }
 
+    /*
+        decode the json format string and update the robot status correspondingly
+     */
     public String decodeRobotString_algo(String s)throws JSONException{
         jsonObj = new JSONObject(s);
         String decode = jsonObj.getString("go");
@@ -891,6 +905,9 @@ public class MainActivity extends AppCompatActivity implements SensorEventListen
         return decodeRobotString_(robotX, robotY, robotD);
     }
 
+    /*
+        used to set the robot status and update the grid string
+     */
     public String decodeRobotString_(int x, int y, int d){
         String decode = "";
         String hx = "";
@@ -988,7 +1005,9 @@ public class MainActivity extends AppCompatActivity implements SensorEventListen
         return decode;
     }
 
-    // string with obstacle values
+    /*
+        decode the grid string: add up the unexplored-explored with the empty-obstacle and invert it to get the result
+     */
     public int[][] decodeObstacleString(String s){
         Log.d(TAG, "decodeObstacleString: " + s);
         String decode = s.replace("grid", "");
@@ -1010,6 +1029,9 @@ public class MainActivity extends AppCompatActivity implements SensorEventListen
         return result;
     }
 
+    /*
+        convert the string array with hax value to 2d int array with binary value
+     */
     private int[][] convertToInt(String[] s){
         int[][] obstacleCells = new int[20][15];
         String[] binaryTempArray;
@@ -1033,6 +1055,7 @@ public class MainActivity extends AppCompatActivity implements SensorEventListen
         return obstacleCells;
     }
 
+    // not nececssary for now
     public String decodeObstacleArray(String s)throws JSONException{
         jsonObj = new JSONObject(s);
         String decode = jsonObj.getString("Arena");
@@ -1071,25 +1094,28 @@ public class MainActivity extends AppCompatActivity implements SensorEventListen
         return output;
     }
 
+    /*
+        update the obstacle array(tgt with the explored path) based on the passed in array
+     */
     public void updateObstacleArray(int[][] list){
         Log.d(TAG, "updateObstacleArray()");
-//        for(int i = 0; i < 20; i++) {
-//            for (int j = 0; j < 15; j++)
-//                System.out.print(list[i][j] + " ");
-//            System.out.println();
-//        }
         if(autoUpdate == true){
             arena.setObstacles(list);
         }
     }
 
+    /*
+        update robot position
+     */
     public void updateGridArray(int[] array){
         if(autoUpdate == true){
             Log.d("updateGridArray","true");
             arena.setGridArray(array);
         }
     }
-
+    /*
+        check for connection result
+     */
     public void onActivityResult(int request, int result, Intent data){
         if (true)
             Log.d(TAG, "onActivityResult " + result);
@@ -1112,6 +1138,9 @@ public class MainActivity extends AppCompatActivity implements SensorEventListen
         }
     }
 
+    /*
+        connect to the device that is passed in
+     */
     public void connectDevice(Intent data){
         // get the connected device's MAC address
         String addr = data.getExtras().getString(BluetoothDevicesActivity.EXTRA_DEVICE_ADDRESS);
@@ -1156,6 +1185,9 @@ public class MainActivity extends AppCompatActivity implements SensorEventListen
         return false;
     }
 
+    /*
+        reset the system
+     */
     public void reset(View v){
         sendMessage("reset");
         for(int i = 0; i < 20; i ++){
@@ -1190,6 +1222,9 @@ public class MainActivity extends AppCompatActivity implements SensorEventListen
         fastestTime.setText("00:00:00");
     }
 
+    /*
+        set the postion of the robot
+     */
     public void setRobot(){
         String newPos = "{go:[";
         newPos += x_coordinate.getText().toString() + ",";
