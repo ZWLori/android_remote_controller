@@ -1,0 +1,119 @@
+<?xml version="1.0" encoding="utf-8"?>
+<LinearLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    android:layout_width="match_parent"
+    android:layout_height="match_parent"
+    android:orientation="vertical"
+    android:background="#FBC02D"
+    android:weightSum="1">
+
+    <TextView
+        android:layout_width="fill_parent"
+        android:layout_height="wrap_content"
+        android:textAppearance="?android:attr/textAppearanceMedium"
+        android:text="Bluetooth Device List"
+        android:id="@+id/textView12"
+        android:layout_gravity="center_horizontal"
+        android:textColor="#ffffff"
+        android:textSize="20dp"
+        android:textAlignment="center"
+        android:background="#FDD835"
+        style="@style/Widget.AppCompat.Button.Colored" />
+
+    <TableLayout
+        android:layout_width="480dp"
+        android:layout_height="wrap_content"
+        android:layout_gravity="center_horizontal"
+        android:layout_marginLeft="20dp"
+        android:layout_marginRight="20dp">
+
+        <TableRow
+            android:layout_width="match_parent"
+            android:layout_height="match_parent"
+            android:layout_marginTop="20dp">
+
+            <TextView
+                android:layout_width="200dp"
+                android:layout_height="40dp"
+                android:text=" Paired devices"
+                android:id="@+id/title_paired_devices"
+                android:textSize="18dp"
+                android:background="@drawable/round_btn"
+                android:textColor="#ffffff"
+                style="@style/Widget.AppCompat.Button.Colored"
+                android:layout_column="0" />
+        </TableRow>
+
+        <TableRow
+            android:layout_width="match_parent"
+            android:layout_height="match_parent">
+
+            <ListView
+                android:layout_width="480dp"
+                android:layout_height="250dp"
+                android:id="@+id/paired_devices"
+                android:drawSelectorOnTop="false"
+                android:layout_column="0" />
+        </TableRow>
+
+        <TableRow
+            android:layout_width="match_parent"
+            android:layout_height="match_parent"
+            android:layout_marginTop="30dp">
+
+            <TextView
+                android:layout_width="480dp"
+                android:layout_height="40dp"
+                android:text="Available devices"
+                android:id="@+id/title_new_devices"
+                android:textSize="18dp"
+                android:textColor="#ffffff"
+                android:allowUndo="false"
+                style="@style/Widget.AppCompat.Button.Colored"
+                android:background="@drawable/round_btn"
+                android:layout_column="0" />
+        </TableRow>
+
+        <TableRow
+            android:layout_width="match_parent"
+            android:layout_height="match_parent">
+
+            <ListView
+                android:layout_width="480dp"
+                android:layout_height="250dp"
+                android:id="@+id/avail_devices"
+                android:layout_column="0" />
+        </TableRow>
+    </TableLayout>
+
+    <RelativeLayout
+        android:layout_width="350dp"
+        android:layout_height="wrap_content"
+        android:layout_marginTop="30dp"
+        android:layout_gravity="center">
+
+        <ToggleButton
+            android:layout_width="140dp"
+            android:layout_height="wrap_content"
+            android:text="Scan"
+            android:id="@+id/button_scan"
+            android:background="#FDD835"
+            android:textSize="20dp"
+            android:textColor="#fff"
+            android:textOff="Scan"
+            android:textOn="Scanning"
+            android:layout_marginBottom="20dp"/>
+
+        <Button
+            android:layout_width="140dp"
+            android:layout_height="wrap_content"
+            android:id="@+id/cancel_bluetooth"
+            android:text="Cancel"
+            android:background="#FDD835"
+            android:textColor="#ffffff"
+            android:textSize="20dp"
+            android:layout_alignTop="@+id/button_scan"
+            android:layout_toEndOf="@+id/button_scan"
+            android:layout_marginLeft="60dp"/>
+    </RelativeLayout>
+
+</LinearLayout>

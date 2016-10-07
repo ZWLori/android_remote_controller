@@ -1,0 +1,510 @@
+<?xml version="1.0" encoding="utf-8"?>
+
+<LinearLayout xmlns:android="http://schemas.android.com/apk/res/android"
+xmlns:tools="http://schemas.android.com/tools"
+android:layout_width="fill_parent"
+android:layout_height="fill_parent"
+android:paddingBottom="@dimen/activity_vertical_margin"
+android:paddingLeft="@dimen/activity_horizontal_margin"
+android:paddingRight="@dimen/activity_horizontal_margin"
+android:paddingTop="@dimen/activity_vertical_margin"
+tools:context="com.example.wanluzhang.mdp_17.MainActivity"
+android:background="#FBC02D"
+    android:descendantFocusability="beforeDescendants"
+    android:focusableInTouchMode="true"
+android:orientation="vertical"
+android:weightSum="1">
+
+<TextView
+    android:layout_width="598dp"
+    android:layout_height="wrap_content"
+    android:textAppearance="?android:attr/textAppearanceLarge"
+    android:text="TEAM SeVenTEEN_17"
+    android:id="@+id/textView4"
+    android:layout_gravity="center_horizontal"
+    style="@style/AppTheme"
+    android:textColor="#ffffff"
+    android:textAlignment="center"
+    android:background="#032427"
+    />
+
+    <RelativeLayout android:layout_height="533dp"
+        android:layout_width="570dp"
+        android:layout_gravity="center_vertical">
+
+        <RelativeLayout
+            android:id="@+id/arenaView"
+            android:layout_width="402dp"
+            android:layout_height="533dp"
+            android:layout_marginLeft="20dp"
+            android:longClickable="true"
+            android:layout_alignParentTop="true"
+            android:layout_alignParentStart="true">
+        </RelativeLayout>
+
+        <RelativeLayout
+            android:layout_width="160dp"
+            android:layout_height="wrap_content"
+            android:layout_alignParentTop="true"
+            android:layout_alignParentEnd="true"
+            android:layout_centerHorizontal="true">
+            <Button
+                android:layout_width="95dp"
+                android:layout_height="40dp"
+                android:text="RESET"
+                android:id="@+id/btn_reset"
+                android:background="@drawable/selecter"
+                android:allowUndo="false"
+                style="@style/Widget.AppCompat.Button.Colored"
+                android:textColor="#ffffff"
+                android:onClick="reset"
+                android:textSize="18dp"
+                android:layout_alignParentTop="true"
+                android:layout_marginStart="34dp"
+                android:layout_marginTop="20dp" />
+
+            <TextView
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:textAppearance="?android:attr/textAppearanceSmall"
+                android:text="Fastest Time:"
+                android:id="@+id/textView15"
+                android:textColor="#000000"
+                android:layout_centerHorizontal="true"
+                android:layout_marginTop="20dp"
+                android:layout_below="@+id/btn_reset"/>
+
+            <TextView
+                android:layout_width="110dp"
+                android:layout_height="35dp"
+                android:text="00:00:00"
+                android:id="@+id/timer_fastest"
+                android:background="@android:color/transparent"
+                android:textSize="25dp"
+                android:textAlignment="center"
+                android:layout_centerHorizontal="true"
+                android:textColor="#FFFFFF"
+                android:singleLine="false"
+                android:layout_below="@+id/textView15" />
+
+            <ToggleButton
+                android:layout_width="110dp"
+                android:layout_height="40dp"
+                android:text="FASTEST"
+                android:id="@+id/btn_fastest"
+                android:textColor="#ffffff"
+                android:radius="20dp"
+                android:background="@drawable/selecter"
+                style="@style/Widget.AppCompat.Button.Colored"
+                android:textSize="18dp"
+                android:nestedScrollingEnabled="false"
+                android:textOff="Fastest"
+                android:textOn="Stop Timer"
+                android:layout_marginTop="10dp"
+                android:layout_centerHorizontal="true"
+                android:layout_below="@+id/timer_fastest" />
+
+            <TextView
+                android:layout_width="110dp"
+                android:layout_height="wrap_content"
+                android:textAppearance="?android:attr/textAppearanceSmall"
+                android:text="Explore Time:"
+                android:id="@+id/textView14"
+                android:textAlignment="center"
+                android:layout_centerHorizontal="true"
+                android:textColor="#000000"
+                android:layout_marginTop="10dp"
+                android:layout_below="@+id/btn_fastest"
+                android:layout_alignStart="@+id/timer_explore" />
+
+            <TextView
+                android:layout_width="110dp"
+                android:layout_height="35dp"
+                android:text="00:00:00"
+                android:id="@+id/timer_explore"
+                android:layout_centerHorizontal="true"
+                android:background="@android:color/transparent"
+                android:textSize="25dp"
+                android:textAlignment="center"
+                android:textColor="#FFFFFF"
+                android:layout_below="@+id/textView14" />
+
+            <ToggleButton
+                style="@style/Widget.AppCompat.Button.Colored"
+                android:layout_height="40dp"
+                android:id="@+id/btn_explore"
+                android:background="@drawable/selecter"
+                android:textColor="#ffffff"
+                android:radius="20dp"
+                android:textSize="18dp"
+                android:layout_marginLeft="10dp"
+                android:textOff="Explore"
+                android:textOn="Stop Timer"
+                android:checked="false"
+                android:layout_below="@+id/timer_explore"
+                android:layout_centerHorizontal="true"
+                android:layout_marginTop="10dp"
+                android:layout_width="110dp" />
+
+
+            <TextView
+                android:layout_width="140dp"
+                android:layout_height="25dp"
+                android:textAppearance="?android:attr/textAppearanceMedium"
+                android:text="ROBOT STATUS"
+                android:id="@+id/textView10"
+                android:textColor="#F9A825"
+                android:textAlignment="center"
+                android:background="#e3031015"
+                style="@style/Widget.AppCompat.Button.Colored"
+                android:textSize="15dp"
+                android:layout_below="@+id/btn_explore"
+                android:layout_marginLeft="6dp"
+                android:layout_marginTop="25dp" />
+
+            <TextView
+                android:layout_width="140dp"
+                android:layout_height="30dp"
+                android:textAppearance="?android:attr/textAppearanceMedium"
+                android:id="@+id/text_robotStatus"
+                android:textAlignment="center"
+                android:textSize="20dp"
+                android:text="Stopped"
+                android:textColor="#424242"
+                android:background="#FFEB3B"
+                style="@style/Widget.AppCompat.Button.Colored"
+                android:clickable="true"
+                android:layout_alignStart="@+id/textView10"
+                android:layout_below="@+id/textView10" />
+            <View
+                android:layout_height="4dp"
+                android:layout_width="140dp"
+                android:background="#F57F17"
+                android:id="@+id/view2"
+                android:layout_alignParentStart="true"
+                android:layout_below="@+id/text_robotStatus"
+                android:layout_alignEnd="@+id/text_robotStatus"
+                android:layout_marginLeft="6dp" />
+
+            <GridLayout
+                android:layout_width="140dp"
+                android:layout_height="98dp"
+                android:layout_marginLeft="16dp"
+                android:layout_gravity="center_vertical"
+                android:layout_below="@+id/text_robotStatus"
+                android:layout_alignParentEnd="true"
+                android:layout_marginTop="20dp">
+
+                <ImageButton
+                    android:layout_width="40dp"
+                    android:layout_height="50dp"
+                    android:background="@null"
+                    android:id="@+id/btn_left"
+                    android:src="@drawable/left"
+                    android:scaleType="fitXY"
+                    android:layout_row="2"
+                    android:layout_column="0" />
+
+
+                <ImageButton
+                    android:layout_width="50dp"
+                    android:layout_height="40dp"
+                    android:background="@null"
+                    android:scaleType="fitXY"
+                    android:id="@+id/btn_up"
+                    android:src="@drawable/up"
+                    android:layout_row="0"
+                    android:layout_column="1" />
+
+                <ImageButton
+                    android:layout_width="40dp"
+                    android:layout_height="50dp"
+                    android:background="@null"
+                    android:scaleType="fitXY"
+                    android:id="@+id/btn_right"
+                    android:src="@drawable/right"
+                    android:layout_row="2"
+                    android:layout_column="2" />
+
+            </GridLayout>
+
+
+
+        </RelativeLayout>
+
+
+
+    </RelativeLayout>
+
+
+    <RelativeLayout
+    android:layout_width="570dp"
+    android:layout_height="110dp"
+    android:layout_marginTop="-18dp">
+
+    <TextView
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:text="Sent Messages"
+        android:id="@+id/textView"
+        android:textSize="12dp"
+        android:textColor="#ffffff"
+        android:layout_alignParentTop="true"
+        android:layout_alignBottom="@+id/textView3"
+        android:layout_alignParentStart="true"
+        android:layout_toStartOf="@+id/listView_from"
+        android:textAlignment="center"
+        android:background="#e3031015" />
+
+        <TextView
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:text="Received Messages"
+        android:id="@+id/textView3"
+        android:textSize="12dp"
+        android:textColor="#ffffff"
+        android:layout_alignParentEnd="true"
+        android:layout_alignParentTop="true"
+        android:layout_toEndOf="@+id/textView"
+        android:textAlignment="center"
+        android:background="#e3031015" />
+
+    <ListView
+        android:layout_width="285dp"
+        android:layout_height="60dp"
+        android:stackFromBottom="true"
+        android:transcriptMode="normal"
+        android:id="@+id/listView_from"
+        android:layout_alignTop="@+id/listView_to"
+        android:layout_alignParentEnd="true"
+        android:layout_alignParentBottom="true" />
+
+        <ListView
+            android:layout_width="285dp"
+            android:layout_height="80dp"
+            android:stackFromBottom="true"
+            android:transcriptMode="normal"
+            android:id="@+id/listView_to"
+            android:layout_below="@+id/textView"
+            android:layout_alignParentStart="true"
+            android:layout_marginTop="34dp" />
+
+    </RelativeLayout>
+
+
+    <LinearLayout
+        android:orientation="vertical"
+        android:layout_width="match_parent"
+        android:weightSum="1"
+        android:layout_height="150dp">
+
+        <RelativeLayout
+            android:layout_width="wrap_content"
+            android:layout_height="50dp"
+            android:layout_gravity="center_horizontal">
+            <TextView
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:id="@+id/textView1"
+                android:text="X:"
+                android:textSize="15dp"
+                android:layout_alignBottom="@+id/coor_x"/>
+
+            <EditText
+                android:layout_width="45dp"
+                android:layout_height="40dp"
+                android:id="@+id/coor_x"
+                android:hint="x"
+                android:textColor="#ffffff"
+                android:layout_toEndOf="@+id/textView1"
+                 />
+
+            <TextView
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:id="@+id/textView2"
+                android:text="Y:"
+                android:textSize="15dp"
+                android:layout_toEndOf="@+id/coor_x"
+                android:layout_alignTop="@+id/textView1"/>
+
+            <EditText
+                android:layout_width="45dp"
+                android:layout_height="40dp"
+                android:id="@+id/coor_y"
+                android:hint="y"
+                android:textColor="#ffffff"
+                android:layout_alignTop="@+id/dir"
+                android:layout_toEndOf="@+id/textView2"/>
+
+            <TextView
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:id="@+id/textView5"
+                android:text="DIR:"
+                android:textSize="15dp"
+                android:layout_alignParentEnd="false"
+                android:layout_alignParentStart="false"
+                android:layout_toEndOf="@+id/coor_y"
+                android:layout_alignTop="@+id/textView1"/>
+
+            <EditText
+                android:layout_width="50dp"
+                android:layout_height="40dp"
+                android:id="@+id/dir"
+                android:hint="dir"
+                android:textColor="#ffffff"
+                android:layout_toEndOf="@+id/textView5"
+                android:layout_alignTop="@+id/coor_x"/>
+
+            <Button
+                style="@style/Widget.AppCompat.Button.Colored"
+                android:layout_height="40dp"
+                android:layout_width="150dp"
+                android:text="Set Coord"
+                android:id="@+id/btn_setXY"
+                android:background="@drawable/selecter"
+                android:textColor="#ffffff"
+                android:onClick="setCoord"
+                android:textSize="18dp"
+                android:layout_toEndOf="@+id/dir"
+                android:layout_alignTop="@+id/coor_x"
+                android:layout_marginLeft="20dp"/>
+
+            <!--<Button-->
+                <!--style="@style/Widget.AppCompat.Button.Colored"-->
+                <!--android:layout_width="110dp"-->
+                <!--android:layout_height="40dp"-->
+                <!--android:text="START"-->
+                <!--android:id="@+id/btn_start"-->
+                <!--android:background="@drawable/round_btn"-->
+                <!--android:textColor="#ffffff"-->
+                <!--android:radius="20dp"-->
+                <!--android:onClick="start"-->
+                <!--android:textSize="18dp"-->
+                <!--android:layout_marginLeft="20dp"-->
+                <!--android:layout_alignTop="@+id/btn_setXY"-->
+                <!--android:layout_toEndOf="@+id/btn_setXY" />-->
+
+        </RelativeLayout>
+
+        <RelativeLayout
+            android:layout_width="match_parent"
+            android:layout_marginTop="15dp"
+            android:layout_height="85dp">
+
+            <ToggleButton
+                android:layout_width="95dp"
+                android:layout_height="40dp"
+                android:text="New ToggleButton"
+                android:id="@+id/btn_automanual"
+                android:textOff="Manual"
+                android:textOn="Auto"
+                android:textColor="#ffffff"
+                android:checked="false"
+                android:background="@drawable/togglebtn"
+                style="@style/Widget.AppCompat.Button.Colored"
+                android:textSize="18dp"
+                android:layout_alignParentStart="true" />
+
+            <Button
+                style="?android:attr/buttonStyleSmall"
+                android:layout_width="95dp"
+                android:layout_height="40dp"
+                android:text="Update"
+                android:id="@+id/btn_update"
+                android:textColor="#ffffff"
+                android:background="@drawable/togglebtn"
+                android:clickable="false"
+                android:textSize="18dp"
+                android:layout_marginLeft="20dp"
+                android:layout_toEndOf="@+id/btn_automanual" />
+
+
+            <Button
+                style="?android:attr/buttonStyleSmall"
+                android:layout_width="95dp"
+                android:layout_height="40dp"
+                android:text="F1"
+                android:id="@+id/btn_f1"
+                android:background="@drawable/selecter"
+                android:textColor="#ffffff"
+                android:textSize="18dp"
+                android:layout_marginLeft="20dp"
+                android:layout_toEndOf="@+id/btn_update" />
+
+            <Button
+                style="@style/Widget.AppCompat.Button.Colored"
+                android:layout_width="95dp"
+                android:layout_height="40dp"
+                android:text="F2"
+                android:id="@+id/btn_f2"
+                android:background="@drawable/selecter"
+                android:textColor="#ffffff"
+                android:textSize="18dp"
+                android:layout_marginLeft="20dp"
+                android:layout_toEndOf="@+id/btn_f1"/>
+
+            <ToggleButton
+                style="?android:attr/buttonStyleSmall"
+                android:layout_width="95dp"
+                android:layout_height="40dp"
+                android:text="Tilt"
+                android:id="@+id/tilt_btn"
+                android:background="@drawable/togglebtn"
+                android:textColor="#ffffff"
+                android:textOff="TILT OFF"
+                android:textOn="TILT ON"
+                android:checked="false"
+                android:textSize="18dp"
+                android:layout_marginLeft="20dp"
+                android:layout_toEndOf="@+id/btn_f2"/>
+
+
+
+            <Button
+                android:layout_width="100dp"
+                android:layout_height="25dp"
+                android:text="Send to AMD"
+                android:id="@+id/send_btn"
+                android:textSize="12dp"
+                android:background="@drawable/togglebtn"
+                android:textColor="#ffffff"
+                style="@style/Widget.AppCompat.Button.Colored"
+                android:visibility="gone" />
+            <!--android:layout_alignEnd="@+id/dir"-->
+
+            <EditText
+                android:layout_width="wrap_content"
+                android:layout_height="60dp"
+                android:id="@+id/send_text"
+                android:textSize="15dp"
+                android:shadowColor="#0f3b49"
+                android:textAlignment="center"
+                android:textColor="#000000"
+                android:layout_marginLeft="5dp"
+                android:visibility="gone"
+                android:layout_alignParentTop="true"
+                android:layout_alignEnd="@+id/btn_automanual"/>
+                <!--android:layout_alignStart="@+id/coor_x" />-->
+
+            <TextView
+                android:layout_width="wrap_content"
+                android:layout_height="30dp"
+                android:textAppearance="?android:attr/textAppearanceSmall"
+                android:text="Team 17 - 2016/2017 Semester I"
+                android:id="@+id/textView13"
+                android:textSize="10dp"
+                android:textColor="#063b41"
+                android:layout_marginRight="10dp"
+                android:layout_marginTop="10dp"
+                android:layout_below="@+id/tilt_btn"
+                android:layout_alignEnd="@+id/tilt_btn"
+                android:layout_alignParentRight="true"/>
+        </RelativeLayout>
+
+    </LinearLayout>
+
+</LinearLayout>
+
+

@@ -1,0 +1,105 @@
+<?xml version="1.0" encoding="utf-8"?>
+<LinearLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    android:layout_width="match_parent"
+    android:layout_height="match_parent"
+    android:orientation="vertical"
+    android:background="#FBC02D"
+    android:weightSum="1">
+
+    <TextView
+        android:layout_width="fill_parent"
+        android:layout_height="wrap_content"
+        android:textAppearance="?android:attr/textAppearanceMedium"
+        android:text="Reconfiguration String Commands"
+        android:id="@+id/textView11"
+        android:layout_gravity="center_horizontal"
+        android:textColor="#ffffff"
+        android:textSize="20dp"
+        android:textAlignment="center"
+        android:background="#FDD835"
+        style="@style/Widget.AppCompat.Button.Colored" />
+
+
+    <Button
+        android:layout_width="400dp"
+        android:layout_height="wrap_content"
+        android:text="F1"
+        android:id="@+id/button"
+        android:clickable="false"
+        android:textColor="#ffffff"
+        android:layout_gravity="center_horizontal"
+        android:layout_marginTop="60dp"
+        android:layout_marginLeft="40dp"
+        android:layout_marginRight="40dp"
+        android:background="@drawable/round_btn"
+        style="@style/Widget.AppCompat.Button.Colored"
+        android:textSize="20dp" />
+
+    <EditText
+        android:layout_width="400dp"
+        android:layout_height="wrap_content"
+        android:id="@+id/f1_editText"
+        android:focusableInTouchMode="true"
+        android:clickable="true"
+        android:layout_gravity="center_horizontal"
+        android:layout_marginTop="30dp"
+        android:textColor="#FFFFFF" />
+
+
+    <Button
+        android:layout_width="400dp"
+        android:layout_height="wrap_content"
+        android:text="F2"
+        android:id="@+id/button2"
+        android:clickable="false"
+        android:background="@drawable/round_btn"
+        android:textColor="#ffffff"
+        android:layout_gravity="center_horizontal"
+        android:layout_marginTop="100dp"
+        android:layout_marginLeft="40dp"
+        android:layout_marginRight="40dp"
+        style="@style/Widget.AppCompat.Button.Colored"
+        android:textSize="20dp" />
+
+    <EditText
+        android:layout_width="400dp"
+        android:layout_height="wrap_content"
+        android:id="@+id/f2_editText"
+        android:focusableInTouchMode="true"
+        android:clickable="true"
+        android:layout_gravity="center_horizontal"
+        android:layout_marginTop="30dp"
+        android:textColor="#FFFFFF" />
+
+    <RelativeLayout
+        android:layout_width="350dp"
+        android:layout_height="wrap_content"
+        android:layout_marginTop="100dp"
+        android:layout_gravity="center">
+        <Button
+            android:layout_width="140dp"
+            android:layout_height="wrap_content"
+            android:text="Save &amp; Update"
+            android:id="@+id/save_btn"
+            android:background="#FDD835"
+            style="@style/Widget.AppCompat.Button.Colored"
+            android:layout_marginBottom="20dp"
+            android:textColor="#ffffff" />
+
+        <Button
+            android:layout_width="140dp"
+            android:layout_height="wrap_content"
+            android:id="@+id/cancel_reconfiguration"
+            android:text="Cancel"
+            android:background="#FDD835"
+            android:textColor="#ffffff"
+            style="@style/Widget.AppCompat.Button.Colored"
+            android:layout_alignTop="@+id/save_btn"
+            android:layout_toEndOf="@+id/save_btn"
+            android:layout_marginLeft="60dp"
+             />
+
+
+    </RelativeLayout>
+
+</LinearLayout>
