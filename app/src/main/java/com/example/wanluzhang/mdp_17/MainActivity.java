@@ -548,7 +548,7 @@ public class MainActivity extends AppCompatActivity implements SensorEventListen
         parse a string into int array
      */
     public int[] toIntArray(String s){
-        Log.d("toIntArray()", s);
+//        Log.d("toIntArray()", s);
         String[] stringArray = s.split(" ");
         int len = stringArray.length-1;
         int[] intArray = new int[len];
@@ -792,6 +792,7 @@ public class MainActivity extends AppCompatActivity implements SensorEventListen
                 }
             }
         }
+        sendMessage("runsp");
     }
 
     // not necessary for now
@@ -1018,15 +1019,50 @@ public class MainActivity extends AppCompatActivity implements SensorEventListen
         emptyObstacle = received[1].split("");
         // convert the hex value into binary one
         int[][] exploreArr = convertToInt(unexploredExplored);
-        int[][] obsArr = convertToInt(emptyObstacle);
-        int[][] result = new int[20][15];
+        int[][] obsArr = addObstacle(exploreArr,emptyObstacle);
+        // reverse the array
+        for(int i=0;i<obsArr.length/2;i++){
+            int[] temp = obsArr[i];
+            obsArr[i] = obsArr[19-i];
+            obsArr[19-i] = temp;
+        }
         for(int i = 0; i < 20; i++){
             for (int j = 0; j < 15; j++) {
-                // send me in a top-down reverse order - so need to invert the map
-                result[19-i][j] = exploreArr[i][j] + obsArr[i][j];
+                System.out.print(obsArr[i][j]);
+            }
+            System.out.println();
+        }
+        return obsArr;
+    }
+
+    public int[][] addObstacle(int[][] myMap, String[] obstacles) {
+        String[] binaryTempArray;
+        String string = "";
+        for (int i = 1; i < obstacles.length; i++){
+            int hexToInt = Integer.parseInt(obstacles[i], 16);
+            String intToBinary = Integer.toBinaryString(hexToInt);
+            // make sure all are 4 bits
+            while (intToBinary.length() < 4){
+                intToBinary = "0" + intToBinary;
+            }
+            string += intToBinary;
+        }
+        binaryTempArray = string.split("");
+        String[] binaryArray = Arrays.copyOfRange(binaryTempArray, 1, binaryTempArray.length);
+        int ptr = 0;
+        int arrLength = binaryArray.length;
+        for(int i=0;i<myMap.length;i++) {
+            for(int j=0;j<myMap[i].length;j++) {
+                if(myMap[i][j]==0) {
+                    continue;
+                } else {
+                    if(ptr==arrLength) break;
+                    myMap[i][j] += Integer.parseInt(binaryArray[ptr]);
+                    ++ptr;
+                }
             }
         }
-        return result;
+        return myMap;
     }
 
     /*
