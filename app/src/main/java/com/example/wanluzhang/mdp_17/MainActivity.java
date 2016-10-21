@@ -282,7 +282,7 @@ public class MainActivity extends AppCompatActivity implements SensorEventListen
             @Override
             public void onCheckedChanged(CompoundButton compoundButton, boolean isChecked) {
                 if(isChecked){
-                    sendMessage("sp");
+                    sendMessage("ro,\n");
 //                    try {
 //                        runSp();
 //                    }catch(JSONException e){
@@ -438,7 +438,10 @@ public class MainActivity extends AppCompatActivity implements SensorEventListen
         }
 
         if(string.length() > 0){
-            string = "pa" + string + "\n";
+            if(!string.contains("\n")) {
+                // string send to pc
+                string = "pa" + string + "\n";
+            }
             byte[] msgSend = string.getBytes();
             chatService.write(msgSend);
             // reset buffer to zero
@@ -619,15 +622,15 @@ public class MainActivity extends AppCompatActivity implements SensorEventListen
                             e.printStackTrace();
                         }
                     }
-                    else if(readMsg.contains("#")){
-                        Log.d(TAG, "receiving step command");
-                        try {
-                            fConversationAA.add(mConnectedDevice + " : " + readMsg);
-                            stepMovement(readMsg);
-                        } catch(JSONException e){
-                            e.printStackTrace();
-                        }
-                    }
+//                    else if(readMsg.contains("#")){
+//                        Log.d(TAG, "receiving step command");
+//                        try {
+//                            fConversationAA.add(mConnectedDevice + " : " + readMsg);
+//                            stepMovement(readMsg);
+//                        } catch(JSONException e){
+//                            e.printStackTrace();
+//                        }
+//                    }
                     else if(readMsg.contains("go")){
                         try{
                             fConversationAA.add(mConnectedDevice + " : " + readMsg);
@@ -682,28 +685,28 @@ public class MainActivity extends AppCompatActivity implements SensorEventListen
         } else if (dir.equals("R")) {
             decodeString = decodeRobotString_algo("{go:[R]}");
             updateGridArray(toIntArray(decodeString));
-        } else if (dir.equals("l")) {
-            decodeString = decodeRobotString_algo("{go:[F]}");
-            updateGridArray(toIntArray(decodeString));
-            decodeString = decodeRobotString_algo("{go:[F]}");
-            updateGridArray(toIntArray(decodeString));
-            decodeString = decodeRobotString_algo("{go:[L]}");
-            updateGridArray(toIntArray(decodeString));
-            decodeString = decodeRobotString_algo("{go:[F]}");
-            updateGridArray(toIntArray(decodeString));
-            decodeString = decodeRobotString_algo("{go:[F]}");
-            updateGridArray(toIntArray(decodeString));
-        } else if (dir.equals("r")) {
-            decodeString = decodeRobotString_algo("{go:[F]}");
-            updateGridArray(toIntArray(decodeString));
-            decodeString = decodeRobotString_algo("{go:[F]}");
-            updateGridArray(toIntArray(decodeString));
-            decodeString = decodeRobotString_algo("{go:[R]}");
-            updateGridArray(toIntArray(decodeString));
-            decodeString = decodeRobotString_algo("{go:[F]}");
-            updateGridArray(toIntArray(decodeString));
-            decodeString = decodeRobotString_algo("{go:[F]}");
-            updateGridArray(toIntArray(decodeString));
+//        } else if (dir.equals("l")) {
+//            decodeString = decodeRobotString_algo("{go:[F]}");
+//            updateGridArray(toIntArray(decodeString));
+//            decodeString = decodeRobotString_algo("{go:[F]}");
+//            updateGridArray(toIntArray(decodeString));
+//            decodeString = decodeRobotString_algo("{go:[L]}");
+//            updateGridArray(toIntArray(decodeString));
+//            decodeString = decodeRobotString_algo("{go:[F]}");
+//            updateGridArray(toIntArray(decodeString));
+//            decodeString = decodeRobotString_algo("{go:[F]}");
+//            updateGridArray(toIntArray(decodeString));
+//        } else if (dir.equals("r")) {
+//            decodeString = decodeRobotString_algo("{go:[F]}");
+//            updateGridArray(toIntArray(decodeString));
+//            decodeString = decodeRobotString_algo("{go:[F]}");
+//            updateGridArray(toIntArray(decodeString));
+//            decodeString = decodeRobotString_algo("{go:[R]}");
+//            updateGridArray(toIntArray(decodeString));
+//            decodeString = decodeRobotString_algo("{go:[F]}");
+//            updateGridArray(toIntArray(decodeString));
+//            decodeString = decodeRobotString_algo("{go:[F]}");
+//            updateGridArray(toIntArray(decodeString));
         }
     }
 
@@ -792,7 +795,6 @@ public class MainActivity extends AppCompatActivity implements SensorEventListen
                 }
             }
         }
-        sendMessage("runsp");
     }
 
     // not necessary for now
@@ -1015,6 +1017,7 @@ public class MainActivity extends AppCompatActivity implements SensorEventListen
         String[] unexploredExplored;
         String[] emptyObstacle;
         String[] received = decode.split("-");
+        // remove the starting 11 and the ending 11 from the explored-unexplored string
         unexploredExplored = received[0].split("");
         emptyObstacle = received[1].split("");
         // convert the hex value into binary one
@@ -1081,7 +1084,7 @@ public class MainActivity extends AppCompatActivity implements SensorEventListen
             }
             string += intToBinary;
         }
-        binaryTempArray = string.split("");
+        binaryTempArray = string.substring(2,string.length()-2).split("");
         String[] binaryArray = Arrays.copyOfRange(binaryTempArray, 1, binaryTempArray.length);
         for(int i = 0; i < 20; i++){
             for (int j = 0; j < 15; j++) {
