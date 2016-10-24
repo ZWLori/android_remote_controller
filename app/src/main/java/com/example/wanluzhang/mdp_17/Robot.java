@@ -88,15 +88,6 @@ public class Robot {
             }
         }
 
-        // shortest path
-        for (int i = 0; i < 20; i++){
-            for (int j = 0; j < 15; j++){
-                if (this.spArray[i][j] == 1) {
-                    drawCell(j + 1, i + 1, gridSize, Color.parseColor("#4DD0E1"), canvas);
-                }
-            }
-        }
-
         // ROBOT
         // See whether the robot is towards horizontal way or vertical way
         if(rHeadX == rRobotX){
@@ -129,6 +120,15 @@ public class Robot {
             //head
             for (int i = rRobotX-1; i <= rRobotX+1; i++){
                 drawCell(i, rHeadY, gridSize, Color.parseColor("#FFFF00"), canvas);
+            }
+        }
+
+        // shortest path
+        for (int i = 0; i < 20; i++){
+            for (int j = 0; j < 15; j++){
+                if (this.spArray[i][j] == 1) {
+                    drawCell(j + 1, i + 1, gridSize, Color.parseColor("#4DD0E1"), canvas);
+                }
             }
         }
     }

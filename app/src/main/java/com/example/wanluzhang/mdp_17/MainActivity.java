@@ -100,7 +100,6 @@ public class MainActivity extends AppCompatActivity implements SensorEventListen
     boolean autoUpdate = true;
     boolean tilt = false;
     int[][] obstacleArray = new int[20][15];
-    int[][] spArray = new int[20][15];
     ArrayList obstacleSensor = new ArrayList();
     private long startTimeExplore = 0L;
     private long startTimeFastest = 0L;
@@ -117,6 +116,7 @@ public class MainActivity extends AppCompatActivity implements SensorEventListen
     String dir = "";
     int run = 0;
     List<String> spSteps;
+    int[][] spArray = new int[20][15];
 
     // robot default position
     int xStatus = 2;
@@ -298,6 +298,7 @@ public class MainActivity extends AppCompatActivity implements SensorEventListen
             }
         });
 
+        // enable the tilting function first in case pressing it accidentally
         tiltSensing.setOnCheckedChangeListener(new CompoundButton.OnCheckedChangeListener() {
             @Override
             public void onCheckedChanged(CompoundButton compoundButton, boolean isChecked) {
@@ -331,7 +332,13 @@ public class MainActivity extends AppCompatActivity implements SensorEventListen
                 spArray[x][y] = 0;
             }
         }
-
+//        drawSp(new String[] {"F3", "R", "F5", "L", "F8", "R", "F7", "L", "F7"});
+//        for(int x = 0; x < 20; x++){
+//            for(int y = 0; y < 15; y++){
+//                System.out.print(spArray[x][y]);
+//            }
+//            System.out.println();
+//        }
         arena.setObstacles(obstacleArray);
         arena.setSpArray(spArray);
         arenaDisplay = (RelativeLayout) findViewById(R.id.arenaView);
@@ -737,34 +744,9 @@ public class MainActivity extends AppCompatActivity implements SensorEventListen
         int d = 180;
         int movement = 0;
         // set a pointer pointing to the drawing square
-        int xptr = 2;
+        int xptr = 1;
         int yptr = 19;
         for(String step : steps){
-            // check direction first
-            if(d == 0){
-                if (step.contains("R"))
-                    d = 90;
-                else if (step.contains("L"))
-                    d = 270;
-            }
-            else if(d == 90){
-                if (step.contains("R"))
-                    d = 180;
-                else if (step.contains("L"))
-                    d = 0;
-            }
-            else if(d == 180){
-                if (step.contains("R"))
-                    d = 270;
-                else if (step.contains("L"))
-                    d = 90;
-            }
-            else if(d == 270){
-                if (step.contains("R"))
-                    d = 0;
-                else if (step.contains("L"))
-                    d = 180;
-            }
             // set the moving steps
             if (step.contains("F")){
                 movement = Integer.parseInt(step.replace("F", ""));
@@ -793,7 +775,34 @@ public class MainActivity extends AppCompatActivity implements SensorEventListen
                         spArray[yptr][xptr] = 1;
                     }
                 }
+                continue;
             }
+            // check and set direction
+            if(d == 0){
+                if (step.contains("R"))
+                    d = 90;
+                else if (step.contains("L"))
+                    d = 270;
+            }
+            else if(d == 90){
+                if (step.contains("R"))
+                    d = 180;
+                else if (step.contains("L"))
+                    d = 0;
+            }
+            else if(d == 180){
+                if (step.contains("R"))
+                    d = 270;
+                else if (step.contains("L"))
+                    d = 90;
+            }
+            else if(d == 270){
+                if (step.contains("R"))
+                    d = 0;
+                else if (step.contains("L"))
+                    d = 180;
+            }
+
         }
     }
 
