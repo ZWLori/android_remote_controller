@@ -333,12 +333,7 @@ public class MainActivity extends AppCompatActivity implements SensorEventListen
             }
         }
 //        drawSp(new String[] {"F3", "R", "F5", "L", "F8", "R", "F7", "L", "F7"});
-//        for(int x = 0; x < 20; x++){
-//            for(int y = 0; y < 15; y++){
-//                System.out.print(spArray[x][y]);
-//            }
-//            System.out.println();
-//        }
+
         arena.setObstacles(obstacleArray);
         arena.setSpArray(spArray);
         arenaDisplay = (RelativeLayout) findViewById(R.id.arenaView);
@@ -445,6 +440,7 @@ public class MainActivity extends AppCompatActivity implements SensorEventListen
         }
 
         if(string.length() > 0){
+            // if the string contains a \n symbol, then its the one send to arduino
             if(!string.contains("\n")) {
                 // string send to pc
                 string = "pa" + string + "\n";
@@ -516,7 +512,7 @@ public class MainActivity extends AppCompatActivity implements SensorEventListen
     };
 
     public void goStraight(){
-        sendMessage("f");
+        sendMessage("rF1,B,\n");
         try {
             decodeString = decodeRobotString_algo("{go:[F]}");
             if(decodeString != null)
@@ -527,7 +523,7 @@ public class MainActivity extends AppCompatActivity implements SensorEventListen
     }
 
     public void turnLeft(){
-        sendMessage("l");
+        sendMessage("rL,B,\n");
         try {
             decodeString = decodeRobotString_algo("{go:[L]}");
             if(decodeString != null)
@@ -537,7 +533,7 @@ public class MainActivity extends AppCompatActivity implements SensorEventListen
     }
 
     public void turnRight(){
-        sendMessage("r");
+        sendMessage("rR,B,\n");
         try {
             decodeString = decodeRobotString_algo("{go:[R]}");
             if(decodeString != null)
@@ -558,7 +554,7 @@ public class MainActivity extends AppCompatActivity implements SensorEventListen
         parse a string into int array
      */
     public int[] toIntArray(String s){
-//        Log.d("toIntArray()", s);
+        Log.d("toIntArray()", s);
         String[] stringArray = s.split(" ");
         int len = stringArray.length-1;
         int[] intArray = new int[len];
@@ -625,6 +621,7 @@ public class MainActivity extends AppCompatActivity implements SensorEventListen
                             String[] fastestSteps = readMsg.replace("sp","").split(",");
                             //spSteps = Arrays.asList(fastestSteps);
                             drawSp(fastestSteps);
+
                         } catch(Exception e){
                             e.printStackTrace();
                         }
@@ -745,9 +742,12 @@ public class MainActivity extends AppCompatActivity implements SensorEventListen
         int movement = 0;
         // set a pointer pointing to the drawing square
         int xptr = 1;
-        int yptr = 19;
+        int yptr = 18;
         for(String step : steps){
             // set the moving steps
+            if (step.contains("b")){
+                continue;
+            }
             if (step.contains("F")){
                 movement = Integer.parseInt(step.replace("F", ""));
                 // update the array based on the direction
@@ -804,6 +804,8 @@ public class MainActivity extends AppCompatActivity implements SensorEventListen
             }
 
         }
+
+        arena.setSpArray(spArray);
     }
 
     // not necessary for now
