@@ -635,16 +635,16 @@ public class MainActivity extends AppCompatActivity implements SensorEventListen
 //                            e.printStackTrace();
 //                        }
 //                    }
-                    else if(readMsg.contains("go")){
-                        try{
-                            fConversationAA.add(mConnectedDevice + " : " + readMsg);
-                            decodeString = decodeRobotString_algo(readMsg);
-                            if(decodeString != null)
-                                updateGridArray(toIntArray(decodeString));
-                        } catch(JSONException e){   // json generating error
-                            e.printStackTrace();
-                        }
-                    }
+//                    else if(readMsg.contains("go")){
+//                        try{
+//                            fConversationAA.add(mConnectedDevice + " : " + readMsg);
+//                            decodeString = decodeRobotString_algo(readMsg);
+//                            if(decodeString != null)
+//                                updateGridArray(toIntArray(decodeString));
+//                        } catch(JSONException e){   // json generating error
+//                            e.printStackTrace();
+//                        }
+//                    }
                     else{
                         fConversationAA.add(mConnectedDevice + " : " + readMsg);
                         decodeString = readMsg;
@@ -681,7 +681,9 @@ public class MainActivity extends AppCompatActivity implements SensorEventListen
             Log.d("run:", String.valueOf(run));
             for (int i = 0; i < run; i++) {
                 decodeString = decodeRobotString_algo("{go:[F]}");
-                updateGridArray(toIntArray(decodeString));
+                if(decodeString != null){
+                    updateGridArray(toIntArray(decodeString));
+                }
             }
         } else if (dir.equals("L")) {
             decodeString = decodeRobotString_algo("{go:[L]}");
@@ -817,7 +819,8 @@ public class MainActivity extends AppCompatActivity implements SensorEventListen
                 Log.d("run:",String.valueOf(run));
                 for(int i = 0; i < run; i++){
                     decodeString = decodeRobotString_algo("{go:[F]}");
-                    updateGridArray(toIntArray(decodeString));
+                    if(decodeString != null)
+                        updateGridArray(toIntArray(decodeString));
                 }
             }
             else if(dir.equals("L")){
