@@ -604,16 +604,15 @@ public class MainActivity extends AppCompatActivity implements SensorEventListen
                     String readMsg = new String(read, 0, msg.arg1);
                     if(readMsg.contains("grid")){
                         Log.d(TAG, "receive the grid string");
-                        try {
-                            // the readMessage is in a hex format
-                            fConversationAA.add(mConnectedDevice + " : " + readMsg);
-                            stepMovement(readMsg.split("grid")[0]);
+
+                        // the readMessage is in a hex format
+                        fConversationAA.add(mConnectedDevice + " : " + readMsg);
+                            //stepMovement(readMsg.split("grid")[0]);
+                            setRobot(readMsg.split("grid")[0]);
                             String grid = readMsg.split("grid")[1];
                             obstacleArray = decodeObstacleString(grid);
                             updateObstacleArray(obstacleArray);
-                        } catch (JSONException e){
-                            e.printStackTrace();
-                        }
+
                     }
                     else if(readMsg.contains("sp")){
                         try{
@@ -672,6 +671,7 @@ public class MainActivity extends AppCompatActivity implements SensorEventListen
     };
 
     /*
+        not using for now
         decode each step received and update the map to show robot movement
      */
     public void stepMovement(String msg) throws JSONException{
@@ -1294,6 +1294,16 @@ public class MainActivity extends AppCompatActivity implements SensorEventListen
             e.printStackTrace();
         }
 
+    }
+
+    public void setRobot(String s){
+        String[] temp = s.split(",");
+        int x = Integer.parseInt(temp[1]);
+        int y = Integer.parseInt(temp[0]);
+        int d = Integer.parseInt(temp[2]);
+        decodeString = decodeRobotString_(x, y, d);
+        updateGridArray(toIntArray(decodeString));
+        Toast.makeText(getApplicationContext(), "Robot Set", Toast.LENGTH_SHORT).show();
     }
 
     public void setCoord(View view){
